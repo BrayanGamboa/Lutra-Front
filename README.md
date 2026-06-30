@@ -1,6 +1,5 @@
 # Lutra-Front
-
-Frontend base para aplicación de facturación electrónica orientada a microservicios. Proyecto enfocado en un solo desarrollador, con estructura feature-driven, tipado estricto y piezas reutilizables para autenticación, consulta y creación de facturas.
+Lutra busca ser la solución a pequeños y medianos negocios que requieren facturación electrónica, ofreciendo una plataforma amigable y fácil de usar.
 
 ## 1. Descripción del proyecto
 
@@ -8,7 +7,7 @@ Lutra-Front centraliza experiencia web de autenticación y operación de factura
 
 ## 2. Arquitectura Feature-Driven
 
-Se eligió arquitectura feature-driven porque favorece crecimiento por dominio y no por tipo técnico. Para un solo programador reduce salto mental entre carpetas, concentra contratos, hooks, servicios y componentes de cada feature, y facilita migrar un dominio completo sin tocar resto de aplicación.
+Se eligió arquitectura feature-driven porque favorece crecimiento por dominio y no por tipo técnico. Concentra contratos, hooks, servicios y componentes de cada feature, y facilita migrar un dominio completo sin tocar resto de aplicación.
 
 ### Responsabilidad de carpetas
 
