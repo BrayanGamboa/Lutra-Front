@@ -8,6 +8,7 @@ import { loginUser } from '@/features/auth/services/authService';
 import type {
   AuthResponse,
   LoginPayload,
+  User,
 } from '@/features/auth/types/auth.types';
 
 interface ApiError {
@@ -32,8 +33,40 @@ export const useLogin = (): {
     onMutate: () => {
       setError(null);
     },
-    onSuccess: ({ token, user }) => {
-      useAuthStore.getState().login(user, token);
+    onSuccess: ({ token, user: apiUser }) => {
+      // Normalizamos los roles del usuario desde la respuesta de la API y el token JWT.
+      let roleNames: string[] = apiUser.roles.map((r) => r.name);
+
+      if (roleNames.length === 0) {
+        try {
+          const payloadBase64 = token.split('.')[1];
+          const decoded = JSON.parse(atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'))) as Record<string, unknown>;
+          const claimKey = Object.keys(decoded).find((k) =>
+            k === 'role' || k === 'roles' || k.endsWith('/role'),
+          );
+          if (claimKey !== undefined) {
+            const raw = decoded[claimKey];
+            roleNames = Array.isArray(raw)
+              ? (raw as string[])
+              : typeof raw === 'string'
+                ? [raw]
+                : [];
+          }
+        } catch {
+          
+        }
+      }
+
+      const normalizedUser: User = {
+        userId: apiUser.userId,
+        username: apiUser.username,
+        email: apiUser.email,
+        name: apiUser.name,
+        lastName: apiUser.lastName,
+        roles: roleNames,
+      };
+
+      useAuthStore.getState().login(normalizedUser, token);
       navigate('/home', { replace: true });
     },
     onError: (mutationError) => {

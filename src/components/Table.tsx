@@ -1,6 +1,7 @@
 import type { Key, ReactNode } from 'react';
 
 import { cn } from '@/components/ui/cn';
+import { OtterMascot } from '@/components/OtterMascot';
 
 export interface TableColumn<T> {
   id: string;
@@ -16,6 +17,7 @@ export interface TableProps<T> {
   rowKey: (row: T) => Key;
   emptyMessage?: string;
   className?: string;
+  showOtterOnEmpty?: boolean;
 }
 
 export const Table = <T,>({
@@ -24,6 +26,7 @@ export const Table = <T,>({
   data,
   emptyMessage = 'No hay datos para mostrar.',
   rowKey,
+  showOtterOnEmpty = true,
 }: TableProps<T>): JSX.Element => (
   <div className={cn('overflow-hidden rounded-2xl border border-slate-200 bg-white', className)}>
     <div className="overflow-x-auto">
@@ -60,8 +63,12 @@ export const Table = <T,>({
             ))
           ) : (
             <tr>
-              <td className="px-4 py-10 text-center text-sm text-slate-500" colSpan={columns.length}>
-                {emptyMessage}
+              <td className="text-center" colSpan={columns.length}>
+                {showOtterOnEmpty ? (
+                  <OtterMascot variant="empty" message={emptyMessage} size="md" />
+                ) : (
+                  <p className="px-4 py-10 text-sm text-slate-500">{emptyMessage}</p>
+                )}
               </td>
             </tr>
           )}

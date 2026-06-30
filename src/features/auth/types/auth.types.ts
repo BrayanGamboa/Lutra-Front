@@ -1,31 +1,52 @@
 import { z } from 'zod';
 
-export interface User {
-  id: string;
+export interface UserRole {
+  roleId: number;
   name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface UserFromApi {
+  userId: string;
+  username: string;
   email: string;
-  role: string;
+  name: string;
+  lastName: string;
+  roles: UserRole[];
+}
+
+export interface User {
+  userId: string;
+  username: string;
+  email: string;
+  name: string;
+  lastName: string;
+  roles: string[];
 }
 
 export interface LoginPayload {
-  email: string;
+  username: string;
   password: string;
 }
 
+export interface RegisterPayload {
+  username: string;
+  email: string;
+  password: string;
+  name: string;
+  lastName: string;
+}
+
 export interface AuthResponse {
-  user: User;
+  user: UserFromApi;
   token: string;
 }
 
 export const loginFormSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .min(1, 'Correo requerido.')
-    .email('Ingresa un correo válido.'),
-  password: z
-    .string()
-    .min(6, 'La contraseña debe tener al menos 6 caracteres.'),
+  username: z.string().trim().min(1, 'El usuario es requerido.'),
+  password: z.string(),
 });
 
 export type LoginFormValues = z.infer<typeof loginFormSchema>;

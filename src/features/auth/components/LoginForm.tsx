@@ -18,7 +18,7 @@ export const LoginForm = (): JSX.Element => {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -30,12 +30,12 @@ export const LoginForm = (): JSX.Element => {
   return (
     <form className="space-y-5" noValidate onSubmit={handleSubmit(onSubmit)}>
       <Input
-        autoComplete="email"
-        error={errors.email?.message}
-        label="Correo electrónico"
-        placeholder="tu@empresa.com"
-        type="email"
-        {...register('email')}
+        autoComplete="username"
+        error={errors.username?.message}
+        label="Usuario"
+        placeholder="usuario o correo"
+        type="text"
+        {...register('username')}
       />
 
       <Input

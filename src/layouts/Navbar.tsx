@@ -18,14 +18,17 @@ export const Navbar = (): JSX.Element => {
     <header className="border-b border-slate-200 bg-white px-4 py-4 shadow-sm sm:px-6 lg:px-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-slate-500">Panel operativo</p>
-          <h2 className="text-lg font-semibold text-slate-900">Lutra e-Invoicing</h2>
+          <h2 className="text-lg font-semibold text-slate-900"></h2>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="text-right">
-            <p className="text-sm font-medium text-slate-900">{user?.name ?? 'Usuario autenticado'}</p>
-            <p className="text-xs text-slate-500">{user?.email ?? 'Sesión rehidratada por token'}</p>
+            <p className="text-sm font-medium text-slate-900">
+              {user?.name ? `${user.name} ${user.lastName ?? ''}`.trim() : (user?.username ?? '—')}
+            </p>
+            <p className="text-xs text-slate-500">
+              {user?.roles?.[0] ?? user?.email ?? ''}
+            </p>
           </div>
 
           <Button variant="ghost" onClick={handleLogout}>

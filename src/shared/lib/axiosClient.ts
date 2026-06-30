@@ -25,8 +25,16 @@ axiosClient.interceptors.request.use((config) => {
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (axios.isAxiosError(error) && error.response?.status === 401) {
-      useAuthStore.getState().logout();
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+
+      if (status === 401) {
+        useAuthStore.getState().logout();
+      }
+
+      if (status === 403) {
+        window.location.href = '/sin-acceso';
+      }
     }
 
     return Promise.reject(error);
