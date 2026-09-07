@@ -10,6 +10,7 @@ export interface ButtonProps
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
+  tooltip?: string;
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -39,32 +40,43 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'lg',
       type = 'button',
       variant = 'primary',
+      tooltip,
       ...props
     },
     ref,
   ) => (
-    <button
-      ref={ref}
-      className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-        'disabled:cursor-not-allowed disabled:opacity-60',
-        variantClasses[variant],
-        sizeClasses[size],
-        className,
-      )}
-      disabled={disabled || isLoading}
-      type={type}
-      {...props}
-    >
-      {isLoading ? (
-        <span
-          aria-hidden="true"
-          className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
-        />
+    <div className="relative group">
+      <button
+        ref={ref}
+        className={cn(
+          'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+          'disabled:cursor-not-allowed disabled:opacity-60',
+          variantClasses[variant],
+          sizeClasses[size],
+          className,
+        )}
+        disabled={disabled || isLoading}
+        type={type}
+        {...props}
+      >
+        {isLoading ? (
+          <span
+            aria-hidden="true"
+            className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
+          />
+        ) : null}
+        <span>{children}</span>
+      </button>
+
+      {tooltip ? (
+        <span className="
+            absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
+          {tooltip}
+        </span>
       ) : null}
-      <span>{children}</span>
-    </button>
+
+    </div>
   ),
 );
 

@@ -120,9 +120,8 @@ export const InvoicesPage = (): JSX.Element => {
             onChange={(event) => setSearch(event.target.value)}
           />
 
-          <Button className="sm:self-end" onClick={openCreateModal}>
+          <Button className="sm:self-end" onClick={openCreateModal} tooltip='Agregar factura'>
             <Plus className="h-4 w-4" />
-            Nueva factura
           </Button>
         </div>
       </div>

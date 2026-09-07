@@ -223,8 +223,8 @@ export const CustomerProfilePage = (): JSX.Element => {
             ) : null}
 
             <div className="flex justify-end pt-2">
-              <Button isLoading={isPending} type="submit">
-                Guardar cambios
+              <Button isLoading={isPending} type="submit" tooltip='Guardar cambios'>
+                    Guardar cambios
               </Button>
             </div>
           </form>

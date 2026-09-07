@@ -250,9 +250,8 @@ export const SalesPage = (): JSX.Element => {
           </p>
         </div>
 
-        <Button onClick={() => setIsModalOpen(true)}>
+        <Button onClick={() => setIsModalOpen(true)} tooltip='Agregar venta'>
           <Plus className="h-4 w-4" />
-          Nueva Venta
         </Button>
       </div>
 

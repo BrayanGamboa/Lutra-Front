@@ -144,9 +144,8 @@ export const CategoriesPage = (): JSX.Element => {
           </p>
         </div>
 
-        <Button onClick={() => setIsCreateModalOpen(true)}>
+        <Button onClick={() => setIsCreateModalOpen(true)} tooltip='Agregar categoría'>
           <Plus className="h-4 w-4" />
-          Nueva Categoría
         </Button>
       </div>
 

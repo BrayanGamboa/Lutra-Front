@@ -143,7 +143,7 @@ const CountriesTab = (): JSX.Element => {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button onClick={() => setIsOpen(true)}><Plus className="h-4 w-4" />Nuevo País</Button>
+        <Button onClick={() => setIsOpen(true)} tooltip='Agregar país'><Plus className="h-4 w-4" /></Button>
       </div>
       {isLoading ? (
         <p className="text-sm text-slate-500">Cargando...</p>
@@ -267,7 +267,7 @@ const PaymentMethodsTab = (): JSX.Element => {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button onClick={() => setIsOpen(true)}><Plus className="h-4 w-4" />Nuevo Método</Button>
+        <Button onClick={() => setIsOpen(true)} tooltip='Agregar Método'><Plus className="h-4 w-4" /></Button>
       </div>
       {isLoading ? (
         <p className="text-sm text-slate-500">Cargando...</p>
