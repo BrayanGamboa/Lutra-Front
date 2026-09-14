@@ -91,10 +91,10 @@ const SupplierForm = ({
       {submitError ? <p className="text-sm text-rose-600">{submitError}</p> : null}
 
       <div className="flex justify-end gap-3 pt-2">
-        <Button variant="secondary" type="button" onClick={onCancel}>
+        <Button variant="secondary" type="button" tooltip='Cancelar' onClick={onCancel}>
           Cancelar
         </Button>
-        <Button isLoading={isPending} type="submit">
+        <Button isLoading={isPending} type="submit" tooltip='Guardar'>
           Guardar
         </Button>
       </div>
@@ -144,10 +144,10 @@ export const SuppliersPage = (): JSX.Element => {
         header: '',
         cell: (s) => (
           <div className="flex items-center gap-2">
-            <Button size="sm" variant="ghost" onClick={() => setEditingSupplier(s)}>
+            <Button size="sm" variant="ghost" tooltip={`Editar ${s.name}`} onClick={() => setEditingSupplier(s)}>
               <Pencil className="h-3.5 w-3.5" />
             </Button>
-            <Button size="sm" variant="danger" onClick={() => deleteSupplier(s.supplierId)}>
+            <Button size="sm" variant="danger" tooltip={`Eliminar ${s.name}`} onClick={() => deleteSupplier(s.supplierId)}>
               <Trash2 className="h-3.5 w-3.5" />
             </Button>
           </div>

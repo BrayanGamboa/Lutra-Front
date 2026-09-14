@@ -98,9 +98,7 @@ export const InvoiceForm = ({ onSuccess }: InvoiceFormProps): JSX.Element => {
       ) : null}
 
       <div className="flex justify-end">
-        <Button isLoading={isPending} type="submit">
-          Crear factura
-        </Button>
+        <Button isLoading={isPending} type="submit" tooltip='Agregar factura'></Button>
       </div>
     </form>
   );

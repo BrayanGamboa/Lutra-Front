@@ -65,10 +65,10 @@ const CategoryForm = ({
       {submitError ? <p className="text-sm text-rose-600">{submitError}</p> : null}
 
       <div className="flex justify-end gap-3 pt-2">
-        <Button variant="secondary" type="button" onClick={onCancel}>
+        <Button variant="secondary" type="button" tooltip='Cancelar' onClick={onCancel}>
           Cancelar
         </Button>
-        <Button isLoading={isPending} type="submit">
+        <Button isLoading={isPending} type="submit" tooltip='Guardar'>
           Guardar
         </Button>
       </div>
@@ -120,10 +120,10 @@ export const CategoriesPage = (): JSX.Element => {
         header: '',
         cell: (c) => (
           <div className="flex items-center gap-2">
-            <Button size="sm" variant="ghost" onClick={() => setEditingCategory(c)}>
+            <Button size="sm" variant="ghost" tooltip={`Editar ${c.name}`} onClick={() => setEditingCategory(c)}>
               <Pencil className="h-3.5 w-3.5" />
             </Button>
-            <Button size="sm" variant="danger" onClick={() => deleteCategory(c.categoryId)}>
+            <Button size="sm" variant="danger" tooltip={`Eliminar ${c.name}`} onClick={() => deleteCategory(c.categoryId)}>
               <Trash2 className="h-3.5 w-3.5" />
             </Button>
           </div>

@@ -77,8 +77,8 @@ const NameOnlyForm = ({
       <Input error={errors.name?.message} label="Nombre" placeholder="Nuevo registro" {...register('name')} />
       {submitError ? <p className="text-sm text-rose-600">{submitError}</p> : null}
       <div className="flex justify-end gap-3 pt-2">
-        <Button variant="secondary" type="button" onClick={onCancel}>Cancelar</Button>
-        <Button isLoading={isPending} type="submit">Guardar</Button>
+        <Button variant="secondary" type="button" tooltip='Cancelar' onClick={onCancel}>Cancelar</Button>
+        <Button isLoading={isPending} type="submit" tooltip='Guardar'>Guardar</Button>
       </div>
     </form>
   );
@@ -133,7 +133,7 @@ const CountriesTab = (): JSX.Element => {
       id: 'actions',
       header: '',
       cell: (c) => (
-        <Button size="sm" variant="danger" onClick={() => deleteCountry(c.countryId)}>
+        <Button size="sm" variant="danger" tooltip={`Eliminar ${c.name}`} onClick={() => deleteCountry(c.countryId)}>
           <Trash2 className="h-3.5 w-3.5" />
         </Button>
       ),
@@ -195,7 +195,7 @@ const DocumentTypesTab = (): JSX.Element => {
       id: 'actions',
       header: '',
       cell: (d) => (
-        <Button size="sm" variant="danger" onClick={() => deleteDocumentType(d.documentTypeId)}>
+        <Button size="sm" variant="danger" tooltip={`Eliminar ${d.name}`} onClick={() => deleteDocumentType(d.documentTypeId)}>
           <Trash2 className="h-3.5 w-3.5" />
         </Button>
       ),
@@ -205,7 +205,7 @@ const DocumentTypesTab = (): JSX.Element => {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button onClick={() => setIsOpen(true)}><Plus className="h-4 w-4" />Nuevo Tipo</Button>
+        <Button tooltip='Agregar tipo de documento' onClick={() => setIsOpen(true)}><Plus className="h-4 w-4" /></Button>
       </div>
       {isLoading ? (
         <p className="text-sm text-slate-500">Cargando...</p>
@@ -257,7 +257,7 @@ const PaymentMethodsTab = (): JSX.Element => {
       id: 'actions',
       header: '',
       cell: (p) => (
-        <Button size="sm" variant="danger" onClick={() => deletePaymentMethod(p.paymentMethodId)}>
+        <Button size="sm" variant="danger" tooltip={`Eliminar ${p.name}`} onClick={() => deletePaymentMethod(p.paymentMethodId)}>
           <Trash2 className="h-3.5 w-3.5" />
         </Button>
       ),
@@ -267,7 +267,7 @@ const PaymentMethodsTab = (): JSX.Element => {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button onClick={() => setIsOpen(true)} tooltip='Agregar Método'><Plus className="h-4 w-4" /></Button>
+        <Button onClick={() => setIsOpen(true)} tooltip='Agregar método de pago'><Plus className="h-4 w-4" /></Button>
       </div>
       {isLoading ? (
         <p className="text-sm text-slate-500">Cargando...</p>
@@ -320,7 +320,7 @@ const TaxRegimesTab = (): JSX.Element => {
       id: 'actions',
       header: '',
       cell: (t) => (
-        <Button size="sm" variant="danger" onClick={() => deleteTaxRegime(t.taxRegimeId)}>
+        <Button size="sm" variant="danger" tooltip={`Eliminar ${t.name}`} onClick={() => deleteTaxRegime(t.taxRegimeId)}>
           <Trash2 className="h-3.5 w-3.5" />
         </Button>
       ),
@@ -330,7 +330,7 @@ const TaxRegimesTab = (): JSX.Element => {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button onClick={() => setIsOpen(true)}><Plus className="h-4 w-4" />Nuevo Régimen</Button>
+        <Button tooltip='Agregar regimen fiscal' onClick={() => setIsOpen(true)}><Plus className="h-4 w-4" /></Button>
       </div>
       {isLoading ? (
         <p className="text-sm text-slate-500">Cargando...</p>
@@ -387,11 +387,10 @@ export const CatalogPage = (): JSX.Element => {
             <button
               key={tab.id}
               type="button"
-              className={`shrink-0 border-b-2 px-5 py-3 text-sm font-medium transition-colors ${
-                activeTab === tab.id
+              className={`shrink-0 border-b-2 px-5 py-3 text-sm font-medium transition-colors ${activeTab === tab.id
                   ? 'border-sky-600 text-sky-600'
                   : 'border-transparent text-slate-500 hover:text-slate-900'
-              }`}
+                }`}
               onClick={() => setActiveTab(tab.id)}
             >
               {tab.label}

@@ -22,9 +22,7 @@ export const AccessDeniedPage = (): JSX.Element => {
         </p>
       </div>
 
-      <Button onClick={() => navigate('/', { replace: true })}>
-        Volver al inicio
-      </Button>
+      <Button tooltip='Volver al inicio' onClick={() => navigate('/', { replace: true })}></Button>
     </main>
   );
 };

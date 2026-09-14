@@ -150,10 +150,10 @@ const ProductForm = ({
       {submitError ? <p className="text-sm text-rose-600">{submitError}</p> : null}
 
       <div className="flex justify-end gap-3 pt-2">
-        <Button variant="secondary" type="button" onClick={onCancel}>
+        <Button variant="secondary" type="button" tooltip='Cancelar' onClick={onCancel}>
           Cancelar
         </Button>
-        <Button isLoading={isPending} type="submit">
+        <Button isLoading={isPending} type="submit" tooltip='Guardar'>
           Guardar
         </Button>
       </div>
@@ -226,10 +226,10 @@ export const ProductsPage = (): JSX.Element => {
         header: '',
         cell: (p) => (
           <div className="flex items-center gap-2">
-            <Button size="sm" variant="ghost" onClick={() => setEditingProduct(p)}>
+            <Button size="sm" variant="ghost" tooltip={`Editar ${p.name}`} onClick={() => setEditingProduct(p)}>
               <Pencil className="h-3.5 w-3.5" />
             </Button>
-            <Button size="sm" variant="danger" onClick={() => deleteProduct(p.productId)}>
+            <Button size="sm" variant="danger" tooltip={`Eliminar ${p.name}`} onClick={() => deleteProduct(p.productId)}>
               <Trash2 className="h-3.5 w-3.5" />
             </Button>
           </div>

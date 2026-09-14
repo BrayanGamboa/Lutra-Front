@@ -359,10 +359,10 @@ export const SalesPage = (): JSX.Element => {
           ) : null}
 
           <div className="flex justify-end gap-3 pt-2">
-            <Button variant="secondary" type="button" onClick={handleClose}>
+            <Button variant="secondary" type="button" tooltip='Cancelar' onClick={handleClose}>
               Cancelar
             </Button>
-            <Button isLoading={isPending} type="submit">
+            <Button isLoading={isPending} type="submit" tooltip='Guardar'>
               Guardar
             </Button>
           </div>

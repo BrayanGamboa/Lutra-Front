@@ -53,7 +53,7 @@ export const LoginForm = (): JSX.Element => {
         </div>
       ) : null}
 
-      <Button className="w-full" isLoading={isPending} type="submit">
+      <Button className="w-full" isLoading={isPending} type="submit" tooltip='Ingresar'>
         Ingresar
       </Button>
     </form>

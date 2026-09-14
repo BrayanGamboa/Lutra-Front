@@ -70,8 +70,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </button>
 
       {tooltip ? (
-        <span className="
-            absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
+        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
           {tooltip}
         </span>
       ) : null}

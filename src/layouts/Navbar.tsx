@@ -31,9 +31,8 @@ export const Navbar = (): JSX.Element => {
             </p>
           </div>
 
-          <Button variant="ghost" onClick={handleLogout}>
+          <Button variant="ghost" tooltip='Salir' onClick={handleLogout}>
             <LogOut className="h-4 w-4" />
-            Salir
           </Button>
         </div>
       </div>
